@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+
+    triggers {
+        pollSCM('*/1 * * * *')
+    }
+
+    stages 
+    {
+        stage('Build') 
+        {
+            steps 
+            {
+                script
+                 {
+                    echo 'Building the application...'
+                    // Add your build commands here
+                    docker build -t img_devConnect .
+                    docker run -d -p 8000:8000 --name container_devConnect img_devConnect
+
+                }
+            }
+        }
+
+
+        stage('Test') 
+        {
+            steps 
+            {
+                script
+                 {
+                    echo 'Running Django tests...'
+                    sh 'python django_web_app/manage.py test' // Run Django tests
+
+                    // Check for 200(OK) response
+                    def responseCode = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://your-app-url', returnStatus: true).trim()
+
+                    if (responseCode == '200') 
+                    {
+                        echo 'Application is accessible with a 200(OK) response.'
+                        // Proceed to the next stages (push to artifact registry, deploy to production, etc.)
+                    } else 
+                    {
+                        error 'Failed to get a 200(OK) response. Pipeline will be marked as failed.'
+                    }
+                }
+            }
+        }
+
+    }
+  
+    post {
+        failure {
+            echo 'The pipeline failed :('
+        }
+    }
+}
