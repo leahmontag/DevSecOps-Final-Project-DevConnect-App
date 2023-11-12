@@ -3,14 +3,17 @@
 # Define the image name and tag
 #image_name="my-django-app"
 #image_name="bug-fix-version"
-image_name="new-version"
+#image_name="deconnectapp-img"
+image_name="jenkins/jenkins"
+
+
 
 #image_tag="v1.0"  # Replace with the desired image tag
 #image_tag="v1.1"  # Replace with the desired image tag
-image_tag="v1.2"  # Replace with the desired image tag
+image_tag="1.1"  # Replace with the desired image tag
 
 # Tag the Docker image for Artifact Registry
-artifact_registry_image="me-west1-docker.pkg.dev/devconnect-final-project/leah-montag-artifacts/$image_name:$image_tag"
+artifact_registry_image="me-west1-docker.pkg.dev/devconnect-project/leah-montag-artifacts/$image_name:$image_tag"
 docker tag "$image_name:$image_tag" "$artifact_registry_image"
 
 # Push the Docker image to Artifact Registry using service account impersonation

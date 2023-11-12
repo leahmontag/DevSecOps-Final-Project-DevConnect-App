@@ -2,10 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
-<<<<<<< HEAD
 import os
-=======
->>>>>>> 3f4abd3 (Add files via upload)
 
 class Post(models.Model):
 	title = models.CharField(max_length=100)
@@ -17,13 +14,10 @@ class Post(models.Model):
 	def __str__(self):
 		return self.title
 
-<<<<<<< HEAD
 	def extension(self):
 		name, extension = os.path.splitext(self.file.name)
 		return extension
 
-=======
->>>>>>> 3f4abd3 (Add files via upload)
 	def get_absolute_url(self):
 		return reverse('post-detail', kwargs={'pk': self.pk})
 

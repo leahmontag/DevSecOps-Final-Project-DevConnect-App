@@ -15,6 +15,11 @@ COPY . /app
 # Install additional Python modules required for your project
 RUN pip3 install -r requirements.txt --no-cache-dir
 
+# Install django-crispy-forms with bootstrap4
+RUN pip3 install django-crispy-forms[bootstrap4]
+RUN pip install crispy-bootstrap4
+
+
 # Expose a port if needed (e.g., for Django development server)
 EXPOSE 8000
 
