@@ -50,7 +50,7 @@
     python django_web_app/manage.py test
 
     
-    
+
 <h2>Usage :</h2>
 
     python django_web_app/manage.py makemigrations
@@ -65,5 +65,8 @@
 
 # Working:
 [![Watch the video](https://img.youtube.com/vi/qIK-vfTig6c/0.jpg)](https://youtu.be/qIK-vfTig6c)
+
+
+
 
 
